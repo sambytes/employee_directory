@@ -10,6 +10,7 @@
 
   It is a good idea to list the modules that your application depends on in the package.json in the project root
  */
+var employeeService = require('../services/employee.service');
 var util = require('util');
 
 /*
@@ -38,6 +39,22 @@ function hello(req, res) {
   // variables defined in the Swagger document can be referenced using req.swagger.params.{parameter_name}
   var name = req.swagger.params.name.value || 'stranger';
   var hello = util.format('Hello, %s!', name);
+
+  var sampleUser = {
+    name: {
+      first: "Bob",
+      last: "Roberts"
+    },
+    location: {
+      city: "Portland",
+      state: "Oregon"
+    },
+    phone: '9084658364',
+    email: 'bob.roberts@gmail.com',
+    picture: 'https://robohash.org/bobroberts'
+  }
+
+  employeeService.addUser(sampleUser);
 
   // this sends back a JSON response which is a single string
   res.json(hello);

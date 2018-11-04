@@ -10,7 +10,7 @@ const router = express.Router();
 module.exports = app; // for testing
 
 // this is our MongoDB database
-const dbRoute = "mongodb://admin:@ds151383.mlab.com:51383/employee";
+const dbRoute = "mongodb://admin:coffeeCoder6233@ds151383.mlab.com:51383/employee";
 
 // connects our back end code with the database
 mongoose.connect(
@@ -25,7 +25,7 @@ db.once("open", () => console.log("connected to the database"));
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 var config = {
-  appRoot: __dirname // required config
+  appRoot: __dirname, // required config
 };
 
 SwaggerExpress.create(config, function(err, swaggerExpress) {
