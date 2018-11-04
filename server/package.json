@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "employee",
   "version": "0.0.1",
   "private": true,
   "description": "New Swagger API Project",
@@ -9,15 +9,17 @@
   "main": "app.js",
   "dependencies": {
     "express": "^4.12.3",
-    "mongoose": "^5.3.9",
     "swagger-express-mw": "^0.1.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "should": "^7.1.0",
     "supertest": "^1.0.0"
   },
   "scripts": {
-    "start": "node app.js",
+    "build": "babel src --watch --out-dir dist --copy-files && babel src -d dist",
+    "start": "node dist/app.js",
     "test": "swagger project test"
   }
 }
