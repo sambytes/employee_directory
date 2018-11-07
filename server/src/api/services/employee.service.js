@@ -19,7 +19,7 @@ const EmployeeService = {
     },
 
     updateEmployee(employee) {
-        return Employee.findOneAndUpdate({_id: employee._id}, {$set: {phone: '3950495049'}}, (err, employee) => {
+        return Employee.findOneAndUpdate({_id: employee._id}, {$set: employee}, (err, employee) => {
             if (err) return new Error('Error updating employee');
             return JSON.stringify(employee);
         });

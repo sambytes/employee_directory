@@ -7,6 +7,7 @@ module.exports = {
   addEmployee: addEmployee,
   getEmployees: getEmployees,
   updateEmployee: updateEmployee,
+  deleteEmployee: deleteEmployee,
 };
 
 function addEmployee(req, res) {
@@ -27,3 +28,7 @@ function updateEmployee(req, res) {
     res.json(employees);
   })
 };
+
+function deleteEmployee(req, res) {
+  res.json({})
+}
