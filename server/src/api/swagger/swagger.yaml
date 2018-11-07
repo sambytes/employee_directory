@@ -18,7 +18,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /addUser:
+  /addEmployee:
     # binds a127 app logic to a route
     x-swagger-router-controller: employee.controller
     post:

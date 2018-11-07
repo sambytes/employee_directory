@@ -11,8 +11,8 @@ module.exports = {
 
 function addEmployee(req, res) {
   var employee = req.swagger.params.employee.value;
-  employeeService.addUser(employee);
-  res.json(employee);
+  var savedEmployee = employeeService.addEmployee(employee);
+  res.json(savedEmployee);
 }
 
 function getEmployees(req, res) {

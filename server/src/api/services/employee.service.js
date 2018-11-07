@@ -2,24 +2,25 @@ var Employee = require('../models/employee');
 
 const EmployeeService = {
     
-    addUser(user) {
-        let employee = new Employee();
-        employee = Object.assign(employee, user);
-        employee.save(err => {
-          if (err) { return false }
-      });
+    addEmployee(employee) {
+        let employeeSchema = new Employee();
+        employee = Object.assign(employeeSchema, employee);
+        employee.save((err) => {
+            if (err) return new Error('Error adding user');
+        });
+        return employee;
     },
 
     getEmployees() {
         return Employee.find((err, data) => {
-            if (err) return { success: false, error: err };
+            if (err) return new Error('Error getting employees');
             return JSON.stringify(data);
         });
     },
 
     updateEmployee(employee) {
         return Employee.findOneAndUpdate({_id: employee._id}, {$set: {phone: '3950495049'}}, (err, employee) => {
-            if (err) return { success: false, error: err };
+            if (err) return new Error('Error updating employee');
             return JSON.stringify(employee);
         });
     },
