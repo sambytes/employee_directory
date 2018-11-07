@@ -8,6 +8,13 @@ const EmployeeService = {
         employee.save(err => {
           if (err) { return false }
       });
+    },
+
+    getEmployees() {
+        return Employee.find((err, data) => {
+            if (err) return { success: false, error: err };
+            return JSON.stringify(data);
+        });
     }
 }
 

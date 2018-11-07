@@ -43,6 +43,26 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+
+  /getEmployees:
+    # binds a127 app logic to a route
+    get:
+      x-swagger-router-controller: employee.controller
+      description: Adds new employee
+      # used as the method name of the controller
+      operationId: getEmployees
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Employee"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
