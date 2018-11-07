@@ -48,7 +48,7 @@ paths:
     # binds a127 app logic to a route
     get:
       x-swagger-router-controller: employee.controller
-      description: Adds new employee
+      description: Gets all employees
       # used as the method name of the controller
       operationId: getEmployees
       responses:
@@ -63,6 +63,33 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+
+  /updateEmployee:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: employee.controller
+    post:
+      description: Update employee
+      # used as the method name of the controller
+      operationId: updateEmployee
+      parameters:
+        - name: employee
+          in: body
+          required: true
+          description: Updates employee's information
+          schema:
+            $ref: "#/definitions/Employee"
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/Employee"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -81,6 +108,8 @@ definitions:
         type: string
   Employee:
     properties:
+      _id:
+        type: string
       name:
         $ref: "#/definitions/Name"
       location:

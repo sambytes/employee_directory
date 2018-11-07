@@ -15,7 +15,14 @@ const EmployeeService = {
             if (err) return { success: false, error: err };
             return JSON.stringify(data);
         });
-    }
+    },
+
+    updateEmployee(employee) {
+        return Employee.findOneAndUpdate({_id: employee._id}, {$set: {phone: '3950495049'}}, (err, employee) => {
+            if (err) return { success: false, error: err };
+            return JSON.stringify(employee);
+        });
+    },
 }
 
 module.exports = EmployeeService;

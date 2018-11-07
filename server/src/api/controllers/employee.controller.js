@@ -6,6 +6,7 @@ var util = require('util');
 module.exports = {
   addEmployee: addEmployee,
   getEmployees: getEmployees,
+  updateEmployee: updateEmployee,
 };
 
 function addEmployee(req, res) {
@@ -16,6 +17,13 @@ function addEmployee(req, res) {
 
 function getEmployees(req, res) {
   employeeService.getEmployees().then((employees) => {
+    res.json(employees);
+  })
+};
+
+function updateEmployee(req, res) {
+  var employee = req.swagger.params.employee.value;
+  employeeService.updateEmployee(employee).then((employees) => {
     res.json(employees);
   })
 };
