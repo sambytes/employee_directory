@@ -30,5 +30,9 @@ function updateEmployee(req, res) {
 };
 
 function deleteEmployee(req, res) {
-  res.json({})
-}
+  var id = req.swagger.params.id.value.replace(/['"]+/g, '');
+  employeeService.deleteEmployee(id).then((employee) => {
+    console.log('yyy', employee);
+    res.json(employee);
+  })
+} 

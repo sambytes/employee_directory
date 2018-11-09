@@ -24,6 +24,13 @@ const EmployeeService = {
             return JSON.stringify(employee);
         });
     },
+
+    deleteEmployee(id) {
+        return Employee.findByIdAndRemove(id, (err, employee) => {
+            if (err) return new Error('Error deleting user');
+            return employee;
+        });
+    }
 }
 
 module.exports = EmployeeService;
