@@ -12,7 +12,7 @@ const EmployeeService = {
     },
 
     getEmployees() {
-        return Employee.find((err, data) => {
+        return Employee.find({}, (err, data) => {
             if (err) return new Error('Error getting employees');
             return JSON.stringify(data);
         });

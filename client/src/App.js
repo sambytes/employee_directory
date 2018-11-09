@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {connect} from 'react-redux';
-import {requestEmployees} from './acitons';
+import {requestEmployees, updateEmployee} from './acitons';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,7 +12,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onRequestEmployees: () => dispatch(requestEmployees())
+    onRequestEmployees: () => dispatch(requestEmployees()),
+    updateEmployee: (employee) => dispatch(updateEmployee(employee))
   }
 }
 
@@ -20,6 +21,13 @@ class App extends Component {
 
   componentDidMount() {
     this.props.onRequestEmployees();
+    this.props.updateEmployee({
+      _id: '5bdf76b34a85e05617a23ec8',
+      name: {
+        first: 'Fred',
+        last: 'Pencil'
+      }
+    })
   }
 
   render() {
