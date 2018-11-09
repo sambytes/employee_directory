@@ -1,7 +1,8 @@
 
 import {
     REQUEST_EMPLOYEES_SUCCESS,
-    UPDATE_EMPLOYEE_SUCCESS
+    UPDATE_EMPLOYEE_SUCCESS,
+    ADD_EMPLOYEE_SUCCESS
 } from './constants';
 
 const initialStateEmployees = {
@@ -11,11 +12,20 @@ const initialStateEmployees = {
 export const requestEmployees = (state = initialStateEmployees, action = {}) => {
     switch (action.type) {
         case REQUEST_EMPLOYEES_SUCCESS:
-            return Object.assign({}, state, { employees: action.employees })
+            return {
+                ...state,
+                employees: action.employees
+            }
         case UPDATE_EMPLOYEE_SUCCESS:
-            return Object.assign({}, state, {
-                employees: state.employees.map(e => e.id === action.employee.id ? action.employee : e)
-            })
+            return {
+                ...state,
+                employees: state.employees.map(e => e._id === action.employee._id ? action.employee : e)
+            }
+        case ADD_EMPLOYEE_SUCCESS:
+            return {
+                ...state,
+                employees: [...state.employees, action.employee]
+            }
         default:
             return state
     }

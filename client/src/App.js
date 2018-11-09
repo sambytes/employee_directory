@@ -25,7 +25,7 @@ class App extends Component {
       _id: '5bdf76b34a85e05617a23ec8',
       name: {
         first: 'Fred',
-        last: 'Pencil'
+        last: 'Pumpkin'
       }
     })
   }
