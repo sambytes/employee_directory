@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {connect} from 'react-redux';
-import {requestEmployees, updateEmployee} from './acitons';
+import {requestEmployees, updateEmployee, addEmployee} from './acitons';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,7 +13,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onRequestEmployees: () => dispatch(requestEmployees()),
-    updateEmployee: (employee) => dispatch(updateEmployee(employee))
+    updateEmployee: (employee) => dispatch(updateEmployee(employee)),
+    addEmployee: (employee) => dispatch(addEmployee(employee))
   }
 }
 
@@ -27,6 +28,19 @@ class App extends Component {
         first: 'Fred',
         last: 'Pumpkin'
       }
+    })
+    this.props.addEmployee({
+      "name": {
+        "first": "Pumpkin",
+        "last": "Fish"
+      },
+      "location": {
+        "city": "Portland",
+        "state": "Oregon"
+      },
+      "phone": "4739483059",
+      "email": "pumpkin.fish@gmail.com",
+      "picture": "https://robohash.org/pumpkinfish",
     })
   }
 
