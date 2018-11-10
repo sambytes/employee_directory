@@ -24,15 +24,14 @@ function getEmployees(req, res) {
 
 function updateEmployee(req, res) {
   var employee = req.swagger.params.employee.value;
-  employeeService.updateEmployee(employee).then((employees) => {
-    res.json(employees);
+  employeeService.updateEmployee(employee).then((employee) => {
+    res.json(employee);
   })
 };
 
 function deleteEmployee(req, res) {
   var id = req.swagger.params.id.value.replace(/['"]+/g, '');
-  employeeService.deleteEmployee(id).then((employee) => {
-    console.log('yyy', employee);
+  var employee = employeeService.deleteEmployee(id).then((employee) => {
     res.json(employee);
   })
 } 

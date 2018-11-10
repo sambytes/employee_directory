@@ -26,10 +26,7 @@ const EmployeeService = {
     },
 
     deleteEmployee(id) {
-        return Employee.findByIdAndRemove(id, (err, employee) => {
-            if (err) return new Error('Error deleting user');
-            return employee;
-        });
+        return Employee.findByIdAndRemove(id).exec();
     }
 }
 
