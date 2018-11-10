@@ -4,12 +4,14 @@
   "description": "Employee directory for Postlight coding challenge",
   "main": "index.js",
   "scripts": {
+    "start": "concurrently \"node server/dist/app.js\" \"cd client && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "swagger-ui": "node ./server/app.js"
   },
   "author": "Sam Menza",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^4.0.1",
     "swagger": "^0.7.5"
   }
 }
