@@ -14,6 +14,7 @@ schemes:
 # format of bodies a client can send (Content-Type)
 consumes:
   - application/json
+  - application/octet-stream
 # format of the responses to the client (Accepts)
 produces:
   - application/json
@@ -90,7 +91,7 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
 
-  /deleteEmployee:
+  /deleteEmployee/{id}:
     # binds a127 app logic to a route
     x-swagger-router-controller: employee.controller
     post:
@@ -98,12 +99,10 @@ paths:
       # used as the method name of the controller
       operationId: deleteEmployee
       parameters:
-        - name: id
-          in: body
-          required: true
-          description: Updates employee's information
-          schema:
-            type: string
+      - in: path
+        name: id   # Note the name is the same as in the path
+        required: true
+        type: string
       responses:
         "200":
           description: Success
@@ -154,3 +153,9 @@ definitions:
         type: string
       state:
         type: string
+  # employeeId:
+  #   name: employeeId
+  #   in: path
+  #   description: Employee id
+  #   required: true
+  #   type: string

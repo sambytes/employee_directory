@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {connect} from 'react-redux';
-import {requestEmployees, updateEmployee, addEmployee} from './acitons';
+import {requestEmployees, updateEmployee, addEmployee, deleteEmployee} from './acitons';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,36 +12,18 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onRequestEmployees: () => dispatch(requestEmployees()),
+    requestEmployees: () => dispatch(requestEmployees()),
     updateEmployee: (employee) => dispatch(updateEmployee(employee)),
-    addEmployee: (employee) => dispatch(addEmployee(employee))
+    addEmployee: (employee) => dispatch(addEmployee(employee)),
+    deleteEmployee: (employee) => dispatch(deleteEmployee(employee))
   }
 }
 
 class App extends Component {
 
   componentDidMount() {
-    this.props.onRequestEmployees();
-    this.props.updateEmployee({
-      _id: '5bdf76b34a85e05617a23ec8',
-      name: {
-        first: 'Fred',
-        last: 'Pumpkin'
-      }
-    })
-    this.props.addEmployee({
-      "name": {
-        "first": "Pumpkin",
-        "last": "Fish"
-      },
-      "location": {
-        "city": "Portland",
-        "state": "Oregon"
-      },
-      "phone": "4739483059",
-      "email": "pumpkin.fish@gmail.com",
-      "picture": "https://robohash.org/pumpkinfish",
-    })
+    this.props.requestEmployees();
+    this.props.deleteEmployee('5be889ea13a110469b8de1a5');
   }
 
   render() {

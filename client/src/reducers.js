@@ -2,7 +2,8 @@
 import {
     REQUEST_EMPLOYEES_SUCCESS,
     UPDATE_EMPLOYEE_SUCCESS,
-    ADD_EMPLOYEE_SUCCESS
+    ADD_EMPLOYEE_SUCCESS,
+    DELETE_EMPLOYEE_SUCCESS
 } from './constants';
 
 const initialStateEmployees = {
@@ -25,6 +26,11 @@ export const requestEmployees = (state = initialStateEmployees, action = {}) => 
             return {
                 ...state,
                 employees: [...state.employees, action.employee]
+            }
+        case DELETE_EMPLOYEE_SUCCESS:
+            return {
+                ...state,
+                employees: state.employees.filter((e) => e._id !== action.employee._id)
             }
         default:
             return state
