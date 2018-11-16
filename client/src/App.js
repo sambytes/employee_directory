@@ -7,6 +7,7 @@ import AppTable from './components/app-table';
 import AddEmployee from './components/add-employee';
 import EmployeeDetail from './components/employee-detail';
 import 'semantic-ui-css/semantic.min.css';
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 
 const mapStateToProps = (state) => {
   return {
@@ -34,15 +35,24 @@ class App extends Component {
     console.log('xxx', employees);
     if (employees.length > 0) {
       return (
+        <Router>
         <div className="App">
-          <div className="navBar">
-            <h1> Employee Directory</h1>
-            <Button> Add User </Button>
+            <div className="navBar">
+              <Link to="/">
+                <h1 class="title"> Employee Directory</h1>
+              </Link>
+              <Link to="/addUser">
+                <Button> Add User </Button>
+              </Link>
+            </div>
+            {employees && (
+              <Route exact={true} path="/" render={() => (
+                <AppTable data={employees}></AppTable>
+              )}/>
+            )}
+            <Route path="/addUser" component={AddEmployee}/>
           </div>
-          <AppTable data={employees} />
-          <AddEmployee></AddEmployee>
-          <EmployeeDetail employee={employees[0]}></EmployeeDetail>
-        </div>
+        </Router>
       );
     } else {
       return (
@@ -53,3 +63,6 @@ class App extends Component {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+{/* <AppTable data={employees} />
+<EmployeeDetail employee={employees[0]}></EmployeeDetail> */}

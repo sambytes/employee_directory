@@ -24,6 +24,7 @@ const EmployeeDetail = ({employee}) => {
                     <div>{employee.location.city}, {employee.phone}</div>
                 </div>
             </div>
+            <button class="ui red button">Delete Employee</button>
         </div>
     )
 }

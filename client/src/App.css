@@ -34,3 +34,7 @@
 .navBar {
   display: flex;
 }
+
+.navBar a {
+  color: #000000;
+}
