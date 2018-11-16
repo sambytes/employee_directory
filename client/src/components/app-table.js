@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactTable from 'react-table';
 import "react-table/react-table.css";
+import {withRouter} from 'react-router-dom';
 
-const AppTable = ({ data }) => {
-    const columns = [{
+class AppTable extends Component {
+
+    columns = [{
         id: 'firstName',
         Header: 'First Name',
         accessor: d => d.name.first
@@ -27,15 +29,24 @@ const AppTable = ({ data }) => {
         Header: 'Email',
         accessor: 'email'
     }]
-    return (
-        <div>
-            <ReactTable
-                data={data}
-                columns={columns}
-                className="-striped -highlight"
-            />
-        </div>
-    );
+    render() {
+        return (
+            <div>
+                <ReactTable
+                    data={this.props.data}
+                    columns={this.columns}
+                    className="-striped -highlight"
+                    getTdProps={(state, rowInfo) => {
+                        return {
+                          onClick: (e) => {
+                            this.props.history.push(`/employee/${rowInfo.original._id}`);
+                          }
+                        };
+                      }}
+                />
+            </div>
+        );
+    }
 }
 
-export default AppTable;
+export default withRouter(AppTable);

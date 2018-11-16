@@ -39,7 +39,7 @@ class App extends Component {
         <div className="App">
             <div className="navBar">
               <Link to="/">
-                <h1 class="title"> Employee Directory</h1>
+                <h1 className="title"> Employee Directory</h1>
               </Link>
               <Link to="/addUser">
                 <Button> Add User </Button>
