@@ -1,31 +1,41 @@
-import React from "react";
+import React, { Component } from "react";
 import './employee-detail.css';
+import {withRouter} from 'react-router-dom';
 
-const EmployeeDetail = ({employee}) => {
-    return (
-        <div className="container">
-            <img alt="employee" src={employee.picture}></img>
-            <div className="employeeInformation">
-                <div>
-                    <h3>{employee.name.first} {employee.name.last}</h3>
+class EmployeeDetail extends Component {
+
+    handleClick(employeeId, deleteUser) {
+        deleteUser(employeeId);
+        this.props.history.push(`/`);
+    }
+     
+    render() {
+        const {employee, onDeleteUser} = this.props;
+        return (
+            <div className="container">
+                <img alt="employee" src={employee.picture}></img>
+                <div className="employeeInformation">
+                    <div>
+                        <h3>{employee.name.first} {employee.name.last}</h3>
+                    </div>
+                    <div className="ui divider"></div>
+                    <div className="informationDetail">
+                        <div className="informationTitle">Location</div>
+                        <div>{employee.location.city}, {employee.location.state}</div>
+                    </div>
+                    <div className="informationDetail">
+                        <div className="informationTitle">Email</div>
+                        <div>{employee.location.city}, {employee.email}</div>
+                    </div>
+                    <div className="informationDetail">
+                        <div className="informationTitle">Phone</div>
+                        <div>{employee.location.city}, {employee.phone}</div>
+                    </div>
                 </div>
-                <div className="ui divider"></div>
-                <div className="informationDetail">
-                    <div className="informationTitle">Location</div>
-                    <div>{employee.location.city}, {employee.location.state}</div>
-                </div>
-                <div className="informationDetail">
-                    <div className="informationTitle">Email</div>
-                    <div>{employee.location.city}, {employee.email}</div>
-                </div>
-                <div className="informationDetail">
-                    <div className="informationTitle">Phone</div>
-                    <div>{employee.location.city}, {employee.phone}</div>
-                </div>
+                <button className="ui red button" onClick={() => this.handleClick(employee._id, onDeleteUser)}>Delete Employee</button>
             </div>
-            <button className="ui red button">Delete Employee</button>
-        </div>
-    )
+        )
+    }
 }
 
-export default EmployeeDetail
+export default withRouter(EmployeeDetail);
