@@ -51,6 +51,9 @@ class App extends Component {
               )}/>
             )}
             <Route path="/addUser" component={AddEmployee}/>
+            <Route path="/employee/:employeeId" render={({match}) => (
+              <EmployeeDetail employee={employees.find((e) => e._id === match.params.employeeId)}></EmployeeDetail>
+            )}/>
           </div>
         </Router>
       );
