@@ -26,6 +26,7 @@ export const updateEmployee = (employee) => (dispatch) => {
 }
 
 export const addEmployee = (employee) => (dispatch) => {
+    console.log('addEmployee', employee);
     axios.post('http://localhost:10010/addEmployee', employee).then((res) => {
         dispatch({type: ADD_EMPLOYEE_SUCCESS, employee: res.data});
     })

@@ -78,7 +78,6 @@ const validate = val => {
         phone: '',
         picture: '',
     };
-    console.log('eee', val);
     if (!get(val, 'name.first')) {
         console.log('First Name is required');
         errors.name.first = 'Required';

@@ -34,7 +34,7 @@ class App extends Component {
   }
 
   render() {
-    const {employees} = this.props;
+    const {employees, addEmployee} = this.props;
     console.log('xxx', employees);
     if (employees.length > 0) {
       return (
@@ -54,7 +54,7 @@ class App extends Component {
               )}/>
             )}
             <Route path="/addUser" render={() => (
-              <AddEmployee onSubmit={this.handleAddEmployee}></AddEmployee>
+              <AddEmployee onSubmit={addEmployee}></AddEmployee>
             )}/>
             <Route path="/employee/:employeeId" render={({match}) => (
               <EmployeeDetail employee={employees.find((e) => e._id === match.params.employeeId)}></EmployeeDetail>
