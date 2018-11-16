@@ -23,11 +23,14 @@ const mapDispatchToProps = (dispatch) => {
     deleteEmployee: (employee) => dispatch(deleteEmployee(employee))
   }
 }
-
 class App extends Component {
 
   componentDidMount() {
     this.props.requestEmployees();
+  }
+
+  handleAddEmployee = values => {
+    console.log(values);
   }
 
   render() {
@@ -50,7 +53,9 @@ class App extends Component {
                 <AppTable data={employees}></AppTable>
               )}/>
             )}
-            <Route path="/addUser" component={AddEmployee}/>
+            <Route path="/addUser" render={() => (
+              <AddEmployee onSubmit={this.handleAddEmployee}></AddEmployee>
+            )}/>
             <Route path="/employee/:employeeId" render={({match}) => (
               <EmployeeDetail employee={employees.find((e) => e._id === match.params.employeeId)}></EmployeeDetail>
             )}/>
@@ -66,6 +71,3 @@ class App extends Component {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-{/* <AppTable data={employees} />
-<EmployeeDetail employee={employees[0]}></EmployeeDetail> */}
