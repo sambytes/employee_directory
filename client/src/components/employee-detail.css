@@ -1,0 +1,20 @@
+.container {
+    display: grid;
+    grid-template-columns: 16% 84%;
+    align-items: center;
+}
+
+.employeeInformation {
+    display: flex;
+    flex-direction: column;
+    justify-self: start;
+}
+
+.employeeDetail {
+    display: flex;
+    flex-direction: column;
+}
+
+.informationTitle {
+    font-weight: bold;
+}
