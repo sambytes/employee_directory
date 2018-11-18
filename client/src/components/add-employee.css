@@ -1,0 +1,22 @@
+.addEmployeeForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.addEmployeeForm input {
+    margin: 0 auto;
+}
+
+.addEmployeeForm label {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.button {
+    margin: 0 auto;
+}
+
+.error {
+    color: red;
+}

@@ -1,139 +1,90 @@
-import React from "react";
-import { Field, reduxForm } from 'redux-form';
-import { get } from 'lodash';
+import React, {Component} from "react";
+import { Form, Text, Scope } from 'informed';
+import {get} from 'lodash';
+import './add-employee.css';
+import {withRouter} from 'react-router-dom';
 
-let AddEmployee = props => {
-    const { handleSubmit } = props;
-    return (
-        <form onSubmit={handleSubmit} className="form">
-            <div className="field">
-                <div className="control">
-                    <label className="label">First Name</label>
-                    <Field className="input" name="name.first" component={renderField} type="text" placeholder="First Name" />
-                </div>
-            </div>
+class AddEmployee extends Component {
+    constructor(props) {
+        super(props);
 
-            <div className="field">
-                <div className="control">
-                    <label className="label">Last Name</label>
-                    <Field className="input" name="name.last" component={renderField} type="text" placeholder="Last Name" />
-                </div>
-            </div>
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.setFormApi = this.setFormApi.bind(this);
+    }
 
-            <div className="field">
-                <div className="control">
-                    <label className="label">City</label>
-                    <Field className="input" name="location.city" component={renderField} type="text" placeholder="City" />
-                </div>
-            </div>
+    handleSubmit() {
+        this.props.onSubmit(this.formApi.getState().values)
+        this.props.history.push(`/`);
+    }
 
-            <div className="field">
-                <div className="control">
-                    <label className="label">State</label>
-                    <Field className="input" name="location.state" component={renderField} type="text" placeholder="State" />
-                </div>
-            </div>
+    setFormApi(formApi) {
+        this.formApi = formApi;
+    }
 
-            <div className="field">
-                <div className="control">
-                    <label className="label">Email</label>
-                    <Field className="input" name="email" component={renderField} type="email" placeholder="Email Address" />
-                </div>
-            </div>
+    render() {
+        
+        // Field Validation
+        const requiredValidation = (value) => {
+            return !value ? 'Field is required' : null;
+        }
 
-            <div className="field">
-                <div className="control">
-                    <label className="label">Phone</label>
-                    <Field className="input" name="phone" component={renderField} type="text" placeholder="Phone number" />
-                </div>
-            </div>
+        const phoneValidation = (value) => {
+            if (value) {
+                return !/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/.test(value) ? 'Phone number must be in format xxx-xxx-xxxx' : null;
+            } else {
+                return 'Field is required'
+            }
+        }
 
-            <div className="field">
-                <div className="control">
-                    <label className="label">Picture, valid photo url path only</label>
-                    <Field className="input" name="picture" component={renderField} type="text" placeholder="Picture" />
-                </div>
-            </div>
+        const emailValidation = (value) => {
+            if (value) {
+                return !/^.+@.+$/i.test(value) ? 'Email is invalid' : null;
+            } else {
+                return 'Field is required'
+            }
+        }
 
-            <div className="field">
-                <div className="control">
-                    <button className="button is-link">Submit</button>
-                </div>
-            </div>
-        </form>
-    )
+        const photoValidation = (value) => {
+            if (value) {
+                return !/[A-Za-z0-9]+\.(png|gif|jpe?g)$/.test(value) ? 'Phone url must end with .jpg .gif or .png' : null;
+            } else {
+                return 'Field is required'
+            }
+        }
+
+        return (
+            <Form onSubmit={this.handleSubmit} getApi={this.setFormApi} id="add-employee">
+                {({ formState }) => (
+                    <div className="addEmployeeForm">
+                        <Scope scope="name">
+                            <label htmlFor="add-employee-firstName">First Name: <span className="error">{get(formState, 'errors.name.first')}</span></label>
+                            <Text field="first" value="Jane"validate={requiredValidation} placeholder="First Name" />
+                            <label htmlFor="add-employee-lastName">Last Name: <span className="error">{get(formState, 'errors.name.last')}</span></label>
+                            <Text field="last" validate={requiredValidation} placeholder="Last Name" />
+                        </Scope>
+    
+                        <Scope scope="location">
+                            <label htmlFor="add-employee-city">City: <span className="error">{get(formState, 'errors.location.city')}</span></label>
+                            <Text validate={requiredValidation} field="city" placeholder="City" />
+                            <label htmlFor="add-employee-state">State: <span className="error">{get(formState, 'errors.location.state')}</span></label>
+                            <Text field="state" validate={requiredValidation} placeholder="State" />
+                        </Scope>
+    
+                        <label htmlFor="add-employee-phone">Phone: <span className="error">{get(formState, 'errors.phone')}</span></label>
+                        <Text field="phone" validate={phoneValidation} placeholder="Phone" />
+    
+                        <label htmlFor="add-employee-email">Email: <span className="error">{get(formState, 'errors.email')}</span></label>
+                        <Text field="email" validate={emailValidation} placeholder="Email" />
+    
+                        <label htmlFor="add-employee-picture">Photo Url: <span className="error">{get(formState, 'errors.picture')}</span></label>
+                        <Text field="picture" validate={photoValidation} placeholder="Picture" />
+    
+                        <button onClick={this.handleSubmit} type="submit" className="ui blue button">Submit</button>
+                    </div>
+                )}
+            </Form>
+        )
+    }
 }
 
-const validate = val => {
-    const errors = {
-        name: {
-            first: '',
-            last: ''
-        },
-        location: {
-            city: '',
-            state: '',
-        },
-        email: '',
-        phone: '',
-        picture: '',
-    };
-    if (!get(val, 'name.first')) {
-        errors.name.first = 'Required';
-    } else {
-        errors.name.first = '';
-    }
-    if (!get(val, 'name.last')) {
-        errors.name.last = 'Required';
-    } else {
-        errors.name.last = ''
-    }
-    if (!get(val, 'location.city')) {
-        errors.location.city = 'Required';
-    } else {
-        errors.location.city = '';
-    }
-    if (!get(val, 'location.state')) {
-        errors.location.state = 'Required';
-    } else {
-        errors.location.state = '';
-    }
-    if (!val.email) {
-        errors.email = 'Required';
-    } else if (!/^.+@.+$/i.test(val.email)) {
-        errors.email = 'Invalid email address';
-    }
-    if (!val.phone) {
-        errors.phone = 'Required'
-    } else if (!/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/.test(val.phone)) {
-        errors.phone = 'Invalid phone number, must be in format xxx-xxx-xxxx';
-    }
-    if (!val.phone) {
-        errors.phone = 'Required'
-    } else if (!/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/.test(val.phone)) {
-        errors.phone = 'Invalid phone number, must be in format xxx-xxx-xxxx';
-    }
-    const validatePicture = new RegExp('(?:[a-z0-9-]+.)+[a-z]{2,6}(?:/[^/#?]+)+.(?:jpg|gif|png)$')
-    if (!validatePicture.test(val.picture)) {
-        errors.picture = 'Picture field must be valid url path to ending with .jpg, .gif, or .png';
-    }
-
-    return errors;
-};
-
-const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
-    <div>
-        <div className="control">
-            <label className="field">{label}</label>
-            <input className="input" {...input} placeholder={label} type={type} />
-            {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-        </div>
-    </div>
-)
-
-AddEmployee = reduxForm({
-    form: 'addEmployee',
-    validate
-})(AddEmployee);
-
-export default AddEmployee
+export default withRouter(AddEmployee);

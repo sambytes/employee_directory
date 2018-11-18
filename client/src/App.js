@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Button} from 'semantic-ui-react';
 import './App.css';
 import {connect} from 'react-redux';
 import {requestEmployees, updateEmployee, addEmployee, deleteEmployee} from './acitons';
@@ -40,7 +39,7 @@ class App extends Component {
                 <h1 className="title"> Employee Directory</h1>
               </Link>
               <Link to="/addUser">
-                <button class="ui blue button">Add User</button>
+                <button className="ui blue button">Add User</button>
               </Link>
             </div>
             {employees && (

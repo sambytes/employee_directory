@@ -7,9 +7,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {requestEmployees} from './reducers';
-import { reducer as formReducer } from 'redux-form';
 
-const rootReducers = combineReducers({requestEmployees, form: formReducer});
+const rootReducers = combineReducers({requestEmployees});
 
 const store = createStore(rootReducers, applyMiddleware(thunkMiddleware));
 
