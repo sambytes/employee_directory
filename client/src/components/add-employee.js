@@ -51,7 +51,7 @@ let AddEmployee = props => {
             <div className="field">
                 <div className="control">
                     <label className="label">Picture, valid photo url path only</label>
-                    <Field className="input" name="picture" component={renderField} type="picture" placeholder="Picture" />
+                    <Field className="input" name="picture" component={renderField} type="text" placeholder="Picture" />
                 </div>
             </div>
 
@@ -79,34 +79,28 @@ const validate = val => {
         picture: '',
     };
     if (!get(val, 'name.first')) {
-        console.log('First Name is required');
         errors.name.first = 'Required';
     } else {
         errors.name.first = '';
     }
     if (!get(val, 'name.last')) {
-        console.log('Last Name is required');
         errors.name.last = 'Required';
     } else {
         errors.name.last = ''
     }
     if (!get(val, 'location.city')) {
-        console.log('City is required');
         errors.location.city = 'Required';
     } else {
         errors.location.city = '';
     }
     if (!get(val, 'location.state')) {
-        console.log('State is required');
         errors.location.state = 'Required';
     } else {
         errors.location.state = '';
     }
     if (!val.email) {
-        console.log('email is required');
         errors.email = 'Required';
     } else if (!/^.+@.+$/i.test(val.email)) {
-        console.log('email is invalid');
         errors.email = 'Invalid email address';
     }
     if (!val.phone) {

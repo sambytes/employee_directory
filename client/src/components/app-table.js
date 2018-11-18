@@ -39,6 +39,7 @@ class AppTable extends Component {
                     getTdProps={(state, rowInfo) => {
                         return {
                           onClick: (e) => {
+                            console.log('uuu', rowInfo);
                             this.props.history.push(`/employee/${rowInfo.original._id}`);
                           }
                         };

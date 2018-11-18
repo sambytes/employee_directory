@@ -29,13 +29,8 @@ class App extends Component {
     this.props.requestEmployees();
   }
 
-  handleAddEmployee = values => {
-    console.log(values);
-  }
-
   render() {
     const {employees, addEmployee, deleteEmployee} = this.props;
-    console.log('xxx', employees);
     if (employees.length > 0) {
       return (
         <Router>
@@ -45,7 +40,7 @@ class App extends Component {
                 <h1 className="title"> Employee Directory</h1>
               </Link>
               <Link to="/addUser">
-                <Button> Add User </Button>
+                <button class="ui blue button">Add User</button>
               </Link>
             </div>
             {employees && (
