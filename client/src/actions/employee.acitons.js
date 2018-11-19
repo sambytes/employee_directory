@@ -8,7 +8,7 @@ import {
 import axios from 'axios';
 
 export const requestEmployees = () => (dispatch) => {
-    axios.get('http://localhost:10010/getEmployees').then((res) => {
+    axios.get(`${process.env.REACT_APP_DB_URL}/getEmployees`).then((res) => {
         dispatch({type: REQUEST_EMPLOYEES_SUCCESS, employees: res.data});
     })
     .catch((err) => {
@@ -17,7 +17,7 @@ export const requestEmployees = () => (dispatch) => {
 }
 
 export const updateEmployee = (employee) => (dispatch) => {
-    axios.post('http://localhost:10010/updateEmployee', employee).then((res) => {
+    axios.post(`${process.env.REACT_APP_DB_URL}/updateEmployee`, employee).then((res) => {
         dispatch({type: UPDATE_EMPLOYEE_SUCCESS, employee: res.data});
     })
     .catch((err) => {
@@ -26,7 +26,7 @@ export const updateEmployee = (employee) => (dispatch) => {
 }
 
 export const addEmployee = (employee) => (dispatch) => {
-    axios.post('http://localhost:10010/addEmployee', employee).then((res) => {
+    axios.post(`${process.env.REACT_APP_DB_URL}/addEmployee`, employee).then((res) => {
         dispatch({type: ADD_EMPLOYEE_SUCCESS, employee: res.data});
     })
     .catch((err) => {
@@ -35,7 +35,7 @@ export const addEmployee = (employee) => (dispatch) => {
 }
 
 export const deleteEmployee = (id) => (dispatch) => {
-    axios.post(`http://localhost:10010/deleteEmployee/${id}`).then((res) => {
+    axios.post(`${process.env.REACT_APP_DB_URL}/deleteEmployee/${id}`).then((res) => {
         dispatch({type: DELETE_EMPLOYEE_SUCCESS, employee: res.data});
     })
     .catch((err) => {

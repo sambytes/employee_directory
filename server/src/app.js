@@ -2,6 +2,7 @@
 const mongoose = require("mongoose");
 const express = require("express");
 var SwaggerExpress = require('swagger-express-mw');
+require('dotenv').config()
 
 const API_PORT = 3001;
 const app = express();
@@ -10,7 +11,7 @@ const router = express.Router();
 module.exports = app; // for testing
 
 // this is our MongoDB database
-const dbRoute = "mongodb://admin:coffeeCoder6233@ds151383.mlab.com:51383/employee";
+const dbRoute = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}:${process.env.DB_PORT}/employee`;
 
 // connects our back end code with the database
 mongoose.connect(
