@@ -10,6 +10,7 @@ To start the local environment run the following to start the server:
 
 ```
 cd server
+npm install
 npm run build
 npm start
 ```
@@ -20,6 +21,7 @@ Next start the client by running the following:
 
 ```
 cd ../client
+npm install
 npm start
 ```
 
