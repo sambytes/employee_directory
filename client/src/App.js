@@ -5,6 +5,7 @@ import { requestEmployees, updateEmployee, addEmployee, deleteEmployee } from '.
 import AppTable from './components/app-table';
 import AddEmployee from './components/add-employee';
 import EmployeeDetail from './components/employee-detail';
+import NavBar from './components/navbar';
 import 'semantic-ui-css/semantic.min.css';
 import { BrowserRouter as Router, Link, Route, Switch, Redirect } from 'react-router-dom';
 
@@ -72,23 +73,6 @@ class App extends Component {
       </Router>
     );
   }
-}
-
-const NavBar = () => {
-  return (
-    <div className="navBar">
-      <div>
-        <Link to="/">
-          <h1 className="title"> Employee Directory</h1>
-        </Link>
-      </div>
-      <div>
-        <Link to="/addUser">
-          <button className="ui blue button">Add User</button>
-        </Link>
-      </div>
-    </div>
-  )
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
