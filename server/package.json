@@ -20,7 +20,8 @@
     "supertest": "^1.0.0"
   },
   "scripts": {
-    "build": "babel src --watch --out-dir dist --copy-files && babel src -d dist",
+    "build": "babel src --out-dir dist --copy-files && babel src -d dist",
+    "build-watch": "babel src --watch --out-dir dist --copy-files && babel src -d dist",
     "swagger-ui": "swagger_swagger_fileName=dist/api/swagger/swagger.yaml swagger project edit",
     "start": "node dist/app.js",
     "test": "swagger project test"
