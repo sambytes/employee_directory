@@ -4,7 +4,7 @@ import {
     UPDATE_EMPLOYEE_SUCCESS,
     ADD_EMPLOYEE_SUCCESS,
     DELETE_EMPLOYEE_SUCCESS
-} from './constants';
+} from '../constants';
 
 const initialStateEmployees = {
     employees: [],
