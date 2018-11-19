@@ -13,8 +13,8 @@
     margin: 0 auto;
 }
 
-.button {
-    margin: 0 auto;
+.addEmployeeForm div {
+    margin-top: 1rem;
 }
 
 .error {
