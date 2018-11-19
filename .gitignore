@@ -16,3 +16,6 @@ client/package-lock.json
 
 # Runtime configuration for swagger app
 config/runtime.yaml
+
+# Environments
+.env*
