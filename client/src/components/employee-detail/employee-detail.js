@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './employee-detail.css';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class EmployeeDetail extends Component {
 

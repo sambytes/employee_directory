@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import "react-table/react-table.css";
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class AppTable extends Component {
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore, combineReducers, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import './styles/index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
-import {requestEmployees} from './reducers/employee.reducers';
+import { requestEmployees } from './reducers/employee.reducers';
 
 const rootReducers = combineReducers({requestEmployees});
 
