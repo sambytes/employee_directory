@@ -44,6 +44,8 @@
 
 .navBar a {
   color: #000000;
+  outline: 0;
+  transition: color .2s;
 }
 
 .button {
