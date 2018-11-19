@@ -25,11 +25,11 @@ class EmployeeDetail extends Component {
                     </div>
                     <div className="informationDetail">
                         <div className="informationTitle">Email</div>
-                        <div>{employee.location.city}, {employee.email}</div>
+                        <div>{employee.email}</div>
                     </div>
                     <div className="informationDetail">
                         <div className="informationTitle">Phone</div>
-                        <div>{employee.location.city}, {employee.phone}</div>
+                        <div>{employee.phone}</div>
                     </div>
                     <div className="delete">
                         <button className="ui red button" onClick={() => this.handleClick(employee._id, onDeleteUser)}>Delete Employee</button>

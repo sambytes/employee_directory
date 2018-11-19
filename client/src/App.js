@@ -6,7 +6,7 @@ import AppTable from './components/app-table';
 import AddEmployee from './components/add-employee';
 import EmployeeDetail from './components/employee-detail';
 import 'semantic-ui-css/semantic.min.css';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, Switch, Redirect } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
   return {
@@ -35,12 +35,17 @@ class App extends Component {
         {employees.length === 0 && (
           <div className="App">
             <NavBar></NavBar>
+            <Switch>
             <Route exact={true} path="/" render={() => (
               <h2>No employees in the directory</h2>
             )} />
             <Route path="/addUser" render={() => (
               <AddEmployee onSubmit={addEmployee}></AddEmployee>
             )} />
+            <Route render={() => (
+              <Redirect to="/"/>
+            )} />
+            </Switch>
           </div>
         )
 
@@ -48,6 +53,7 @@ class App extends Component {
         {employees.length > 0 && (
           <div className="App">
             <NavBar></NavBar>
+            <Switch>
             <Route exact={true} path="/" render={() => (
               <AppTable data={employees}></AppTable>
             )} />
@@ -57,6 +63,10 @@ class App extends Component {
             <Route path="/addUser" render={() => (
               <AddEmployee onSubmit={addEmployee}></AddEmployee>
             )} />
+            <Route render={() => (
+              <Redirect to="/"/>
+            )} />
+            </Switch>
           </div>
         )}
       </Router>

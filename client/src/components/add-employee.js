@@ -14,10 +14,8 @@ class AddEmployee extends Component {
 
     handleSubmit() {
         const formState = this.formApi.getState().values;
-        if (formState.hasOwnProperty()) {
-            this.props.onSubmit(formState)
-            this.props.history.push(`/`);
-        }
+        this.props.onSubmit(formState)
+        this.props.history.push(`/`);
     }
 
     setFormApi(formApi) {
@@ -28,7 +26,6 @@ class AddEmployee extends Component {
 
         // Field Validation
         const requiredValidation = (value) => {
-            console.log('going');
             return !value ? 'Field is required' : null;
         }
 
@@ -52,7 +49,7 @@ class AddEmployee extends Component {
             if (value) {
                 return !/[A-Za-z0-9]+\.(png|gif|jpe?g)$/.test(value) ? 'Phone url must end with .jpg .gif or .png' : null;
             } else {
-                return 'Field is required'
+                return null;
             }
         }
 
@@ -82,10 +79,10 @@ class AddEmployee extends Component {
                             <label htmlFor="add-employee-email">Email: <span className="error">{get(formState, 'errors.email')}</span></label>
                             <Text field="email" validate={emailValidation} placeholder="Email" />
 
-                            <label htmlFor="add-employee-picture">Photo Url: <span className="error">{get(formState, 'errors.picture')}</span></label>
+                            <label htmlFor="add-employee-picture">Photo Url: <span className="optional">*optional</span><span className="error">{get(formState, 'errors.picture')}</span></label>
                             <Text field="picture" validate={photoValidation} placeholder="Picture" />
                             <div>
-                                <button onClick={this.handleSubmit} type="submit" className="ui green button">Submit</button>
+                                <button type="submit" className="ui green button">Submit</button>
                             </div>
                         </div>
                     )}
