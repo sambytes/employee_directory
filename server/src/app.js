@@ -11,7 +11,7 @@ const router = express.Router();
 module.exports = app; // for testing
 
 // this is our MongoDB database
-const dbRoute = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}:${process.env.DB_PORT}/employee`;
+const dbRoute = `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASS}@${process.env.DB_URL}:${process.env.DB_PORT}/employee`;
 
 // connects our back end code with the database
 mongoose.connect(
