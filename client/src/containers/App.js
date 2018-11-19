@@ -58,7 +58,7 @@ class App extends Component {
             <Route path="/employee/:employeeId" render={({ match }) => (
               <EmployeeDetail employee={employees.find((e) => e._id === match.params.employeeId)} onDeleteUser={deleteEmployee}></EmployeeDetail>
             )} />
-            <Route path="/addUser" render={() => (
+            <Route path="/addEmployee" render={() => (
               <AddEmployee onSubmit={addEmployee}></AddEmployee>
             )} />
             <Route render={() => (

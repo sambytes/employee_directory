@@ -11,8 +11,8 @@ class Navbar extends Component {
             </Link>
           </div>
           <div>
-            <Link to="/addUser">
-              <button className="ui blue button">Add User</button>
+            <Link to="/addEmployee">
+              <button className="ui blue button">Add Employee</button>
             </Link>
           </div>
         </div>
